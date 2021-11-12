@@ -28,10 +28,20 @@ function ImageSlider() {
 export default ImageSlider
 
 const Carousel = styled(Slider)`
+    & > button {
+        opacity: 0;
+        height: 100%;
+        width: 5vw;
+        z-index: 1;
+        &:hover {
+            opacity: 1;
+            transition: opacity 0.2s ease 0s;
+        }
+    }
     cursor: pointer;
     margin-top: 20px;
     .slick-list{
-            overflow: visible;
+        overflow: initial;
     }
     button{
         z-index: 1;
@@ -44,6 +54,12 @@ const Carousel = styled(Slider)`
     }
     li.slick-active button::before{
         color: #fff;
+    }
+    .slick-prev {
+        left: -75px;
+    }
+    .slick-next {
+        right: -75px;
     }
     img{
         height: 100%;

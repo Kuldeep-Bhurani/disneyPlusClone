@@ -66,6 +66,9 @@ const Signup = styled.a`
     &:hover{
         background: #0056c7;
     }
+    @media (max-width: 850px) {
+        font-size: 10px;
+    }
 `
 
 const Description = styled.p`

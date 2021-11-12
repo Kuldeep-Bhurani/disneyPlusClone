@@ -95,6 +95,7 @@ const ImgTitle = styled.div`
 
 const Controls = styled.div`
     display: flex;
+    flex-wrap: wrap;
 `
 
 const Playbtn = styled.button`
@@ -115,6 +116,10 @@ const Playbtn = styled.button`
     }
     &:hover{
         background: rgb(198, 198, 198)
+    }
+    @media (max-width: 850px) {
+        height: 40px;
+        margin: 12px 5px;
     }
 `
 
@@ -147,6 +152,12 @@ const AddBtn = styled.button`
     span{
         font-size: 30px;
     }
+    @media (max-width: 850px) {
+        font-size: 20px;
+        height: 40px;
+        width: 40px;
+        margin: 12px 0;
+    }
 `
 
 const GroupWatchBtn = styled(AddBtn)`
@@ -160,7 +171,10 @@ const Subtitle = styled.div`
     color: rgb(249, 249, 249);
     min-height: 20px;
     margin-top: 26px;
-    `
+    @media (max-width: 850px) {
+        font-size: 12px;
+    }
+`
 
 const Description = styled.div`
     line-height: 1.4;
@@ -168,4 +182,8 @@ const Description = styled.div`
     font-size: 20px;
     margin-top: 16px;
     max-width: 700px;
+    @media (max-width: 850px) {
+        font-size: 16px;
+        line-height: 1.1;
+    }
 `
