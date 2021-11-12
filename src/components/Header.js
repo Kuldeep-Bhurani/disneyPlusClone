@@ -8,7 +8,7 @@ import {
     SetSignOut
 } from '../features/user/userSlice'
 import { auth, provider } from '../firebase';
-import { signInWithPopup, signOut } from 'firebase/auth'
+import { signInWithPopup, signOut } from '@firebase/auth'
 import { useDispatch, useSelector } from 'react-redux'
 
 function Header() {
@@ -25,7 +25,6 @@ function Header() {
                     email: user.email,
                     photo: user.photoURL,
                 }))
-                navigate("/");
             } else {
                 dispatch(SetSignOut())
                 navigate("/login");
