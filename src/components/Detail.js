@@ -1,37 +1,58 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router'
 import styled from 'styled-components'
+import db from '../firebase';
+import { doc, getDoc } from "firebase/firestore";
 
 function Detail() {
+    const { id } = useParams();
+    const [MvData, setMvData] = useState()
+
+    // eslint-disable-next-line
+    useEffect(async () => {
+        const docRef = doc(db, "movies", id);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            setMvData(docSnap.data())
+        } else {
+            //redirect to home
+        }
+    }, [id])
+
     return (
         <Container>
-            <Background>
-                <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/4F39B7E16726ECF419DD7C49E011DD95099AA20A962B0B10AA1881A70661CE45/scale?width=1440&aspectRatio=1.78&format=jpeg" alt="" />
-            </Background>
-            <ImgTitle>
-                <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/D7AEE1F05D10FC37C873176AAA26F777FC1B71E7A6563F36C6B1B497CAB1CEC2/scale?width=1440&aspectRatio=1.78" alt="" />
-            </ImgTitle>
-            <Controls>
-                <Playbtn>
-                    <img src="/images/play-icon-black.png" alt="" />
-                    <span>PLAY</span>
-                </Playbtn>
-                <TrailerBtn>
-                    <img src="/images/play-icon-white.png" alt="" />
-                    <span>TRAILER</span>
-                </TrailerBtn>
-                <AddBtn>
-                    <span>+</span>
-                </AddBtn>
-                <GroupWatchBtn>
-                    <img src="/images/group-icon.png" alt="" />
-                </GroupWatchBtn>
-            </Controls>
-            <TextContainer>
-                <Subtitle>2008 • 7m • Family, Fanatsy, Kids, Animation</Subtitle>
-                <Description>
-                    An ageing Chinese mother, feeling alone when her child moves out, gets a second chance at motherhood when one of her dumplings comes to life.
-                </Description>
-            </TextContainer>
+            {MvData &&
+                (
+                    <>
+                        <Background>
+                            <img src={MvData.backgroundImg} alt="" />
+                        </Background>
+                        <ImgTitle>
+                            <img src={MvData.titleImg} alt="" />
+                        </ImgTitle>
+                        <Controls>
+                            <Playbtn>
+                                <img src="/images/play-icon-black.png" alt="" />
+                                <span>PLAY</span>
+                            </Playbtn>
+                            <TrailerBtn>
+                                <img src="/images/play-icon-white.png" alt="" />
+                                <span>TRAILER</span>
+                            </TrailerBtn>
+                            <AddBtn>
+                                <span>+</span>
+                            </AddBtn>
+                            <GroupWatchBtn>
+                                <img src="/images/group-icon.png" alt="" />
+                            </GroupWatchBtn>
+                        </Controls>
+                        <TextContainer>
+                            <Subtitle>{MvData.subTitle}</Subtitle>
+                            <Description>{MvData.description}</Description>
+                        </TextContainer>
+                    </>
+                )
+            }
         </Container>
     )
 }
@@ -39,7 +60,7 @@ function Detail() {
 export default Detail
 
 const Container = styled.div`
-    min-height: calc(100vh - 70px);
+    min-height: calc(100vh - 200px);
     padding: 0 calc(3.5vw + 5px);
     position: relative;
 `
