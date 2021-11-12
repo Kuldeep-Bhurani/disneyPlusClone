@@ -1,10 +1,33 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
+import { setMovies } from '../features/movie/movieSlice'
+import db from '../firebase'
 import ImageSlider from './ImageSlider'
 import Movies from './Movies'
 import Viewers from './Viewers'
+import { collection, onSnapshot } from "@firebase/firestore";
 
 function Home() {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        // eslint-disable-next-line
+        const snap = onSnapshot(
+            collection(db, "movies"),
+            (snapshot) => {
+                let a = [];
+                snapshot.forEach((doc) => {
+                    a.push({ id: doc.id, ...doc.data() });
+                });
+                dispatch(setMovies(a));
+                // console.log(a);
+            },
+            (error) => {
+                // console.log(error);
+            });
+    }, [dispatch])
+
     return (
         <Container>
             <ImageSlider />
