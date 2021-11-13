@@ -7,7 +7,7 @@ function Login() {
             <Content>
                 <CTALogoOne src="/images/cta-logo-one.svg" alt="" />
                 <Signup>Get All There</Signup>
-                <Description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras commodo consectetur lobortis. Mauris scelerisque scelerisque tempus. Donec imperdiet cursus lacus, ac interdum enim sodales sit amet. In hac habitasse platea dictumst. Vestibulum in mauris turpis. Morbi nec leo dolor.</Description>
+                <Description>You will get all entertainment from Marvel to National Geographic here. Click Login Now!</Description>
                 <CTALogoTwo src="/images/cta-logo-two.png" alt="" />
             </Content>
         </Container>
@@ -56,7 +56,6 @@ const Signup = styled.a`
     padding: 17px 0;
     color: #f9f9f9;
     border-radius: 4px;
-    cursor: pointer;
     text-align: center;
     font-size: 18px;
     transition: all 250ms;
@@ -67,15 +66,18 @@ const Signup = styled.a`
         background: #0056c7;
     }
     @media (max-width: 850px) {
-        font-size: 10px;
+        font-size: 12px;
     }
 `
 
 const Description = styled.p`
-    font-size: 11px;
+    font-size: 15px;
     letter-spacing: 1.5px;
     text-align: center;
     line-height: 1.5;
+    @media (max-width: 850px) {
+        font-size: 12px;
+    }
 `
 
 const CTALogoTwo = styled.img`
